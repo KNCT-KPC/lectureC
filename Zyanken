@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(void){
+    // じゃんけんゲーム作りまーす。
+    
+    int mywin, cpuwin;
+    double cpu;
+    int myhand, cpuhand;
+    
+    srand((unsigned)time(null));
+    
+    printf("ぐーが「1」、ちょきが「２」、ぱーが「３」Deth.");
+    while((mywin < 3) || (cpuwin < 3)){
+        printf("じゃーん、けーん...\n");
+        scanf("%d", &myhand);
+        printf("Poi!");
+        
+        cpu = rand() % 3;
+        if(cpu <= 0 && cpu > 1){
+            cpuhand = 1;
+        } else if(cpu < 1 && cpu > 2){
+            cpuhand = 2;
+        } else {
+            cpuhand = 3;
+        }
+        
+        if(myhand == cpuhand){
+            printf("あいこ");
+        } else if( (myhand == 1 || myhand == 2) && cpuhand == myhand+1 ){
+            mywin++;
+            printf("君の勝ち。");
+        } else if( (myhand == 3) && (cpuhand == 1) ){
+            mywin++;
+            printf("君の勝ち");
+        } else if( (myhand == 3 || myhand == 2) && cpuhand == myhand-1 ){
+            cpuwin++;
+            printf("僕の勝ち");
+        } else if( (myhand == 1) && (cpuhand == 3) ){
+            cpuwin++;
+            printf("僕の勝ち");
+        } else {
+            printf("1-3の数字が選ばれてないか開発者のミスです。やり直し。");
+        }
+    }
+        
+    if(mywin == 3){
+        printf("君の3勝だ。おめでとう");
+    } else {
+        printf("残念。僕の3勝だ。")
+    }    
+    
+    void(0);
+}
