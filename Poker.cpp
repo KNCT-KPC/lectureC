@@ -249,6 +249,113 @@ printf("フラッシュ : %d\n", flush(onehand));
 */
 }
 
+//以上がくさんのコード。
+//以下おっさんのコード。
+
+/*
+ゲーム関数には変数の宣言と関数呼び出しのみ書きとどめ、それ以外の処理はすべて自作関数に放り投げる方向で。
+*/
+
+/*
+	すっごい余談。
+	「カードを引く」と「カードを描画する」の意味の関数を作ろうと思って、そのまんま英語にすると、
+	どっちも「drawcard」になることに気がついてどうしたもんじゃろの～と2秒ほどなやんだ。
+*/
+
+//山札からカードをドローする処理（最初の五枚も、手札を入れ替える処理もこれ）
+void drawcard(int card[], int hand[], int swaphand){
+	int i;
+	int rnd;
+
+	while(swaphand != 0){												//手札の交換(1P)
+		i = swaphand % 10;
+		rnd = rand() % 52;
+
+		if(card[rnd] != 1){
+			
+			if(hand[i-1] != 0){
+				printf("%d枚目を交換しました。\n", i);
+			}	//手札の交換だったらこのメッセージを表示
+
+			hand[i-1] = rnd;
+			card[rnd] = 1;
+			swaphand = swaphand / 10;
+
+		}
+
+	}
+}	//最初に5枚引くときはswaphandに12345を渡せばよさげ。
+
+
+//手札を文字列にして出力する処理
+void printcard(int hand[]){
+	int i, j;
+
+	for(i=0;i<5;i++){
+		printf("%d ", i+1); 
+		j = hand[i] / 13;
+		switch(j){
+		case 0:printf("スペードの");
+			break;
+		case 1:printf("クローバーの");
+			break;
+		case 2:printf("ハートの");
+			break;
+		case 3:printf("ダイヤの");
+			break;
+			//case 4:printf("Joker\n");
+		}
+		//if(hand[i] != 52){
+		printf("%d\n", hand[i] % 13 + 1);
+		//}
+	}
+	//printf("\n");
+	puts("");	//NDKのKDWR
+
+}
+
+
+//プレイヤーに交換するカードを選択させる処理
+int choice(){
+	int i, I ,j;
+	int k, l;
+	int J[6] = {};	//同じ値が入ってないか判定するための配列
+	int r;			//J[]のリセット用
+
+	while(1){
+		printf("交換するカードの番号を入力してください\n");
+		printf("同じ個所は一度までしか交換できません\n");
+		printf("例:1枚目と3枚目を交換する場合[13]\n");
+		printf("交換しない場合は[0]を入力\n*[0]交じりの数字はだめです*\n");
+		scanf("%d", &i);	//入力が数値か否かを判定する？もっと言うと１～５か判定する？べきだよね？
+		puts("");
+
+		I = i;
+		
+		while(I != 0){
+			if(i < 0 && i >= 54321) break;
+			j = I % 10;
+
+			if(j == 0 || j > 5) break; 
+			if(J[j] == 1) break;
+			J[j] = 1;
+			I = I / 10;
+		}	//判定部分
+
+
+		if(I == 0) break;
+		
+		printf("入力が不正です。正しい値をいれなおしてくだしあ。\n");
+		for(r=0; r>6; r++){
+			J[r] = 0;
+		}
+		//再度手札を見せてあげないあたり、人には多少は優しくない。
+	}
+	
+	return i;
+}
+
+
 void game(){
 	int card[52] = {0};										//トランプカード
 	/*トランプカード1枚1枚に変数を割り振り、
@@ -260,28 +367,40 @@ void game(){
 	  39-51	ダイヤ
 	  52		ジョーカー(めんどくさいので生成しないようにした)*/
 
-	int onehand[5] = {0};									//手札
-	int twohand[5] = {0};
-	int hand[5] = {0};
+	int onehand[5] = {0};									//1P手札
+	int twohand[5] = {0};									//2P手札
+	//	int hand[5] = {0};										//関数呼び出しの引数？
 
-	int onerank = 0;										//役の強さ
-	int tworank = 0;
-	int rank = 0;
+	int chengehand = 0;											//交換する手札の値を保持する変数
 
+	/*
+	int onerank = 0;										//1Pの役の強さ
+	int tworank = 0;										//2Pの役の強さ
+	int rank = 0;											//関数呼び出しの戻り値を受け取る要素？
+	*/
+
+
+	/*
 	int buf[2] = {0};										//一時的なスペース
-	//homo
+	
 	int i = 0;
 	int j = 0;
 	int k = 0;
 	int copy = 0;
-
+	
 	int handle[5] = {0};	
 
 	int pare = 0;
-
+	*/
 	srand((unsigned)time(NULL));
-	int rnd = 0;
+	//int rnd = 0;
 
+
+	drawcard(card, onehand, 12345);	//1Pの手札の生成
+	drawcard(card, twohand, 12345); //2Pの手札の生成
+
+	//以下のコードは上2行にまとまりました。
+	/*
 	while(i < 5){											//手札の生成(1P)
 		rnd = rand() % 52;
 		if(card[rnd] != 1){
@@ -301,13 +420,13 @@ void game(){
 			card[rnd] = 1;
 		}
 	}
-
+	*/
+	
 	/*
 	  for(i=0;i<5;i++){
 	  printf("%d\n",onehand[i]);
 	  }
 	  printf("\n");
-
 	  for(i=0;i<5;i++){
 	  printf("%d\n",twohand[i]);
 	  }
@@ -315,8 +434,13 @@ void game(){
 	*/
 
 
+	int turn; //今回のゲームは交換回数は一度きり...?
+	
+
 	printf("1Pのターンです。\n");
 
+	printcard(onehand);
+	/*
 	for(i=0;i<5;i++){										//手札の表示(1P)
 		printf("%d ", i+1); 
 		j = onehand[i] / 13;
@@ -336,14 +460,21 @@ void game(){
 		//}
 	}
 	printf("\n");
+	*/
 
+	chengehand = choice();
+	/*
 	printf("交換するカードの番号を入力してください\n");
 	printf("例:1枚目と3枚目を交換する場合[13]\n");
 	printf("交換しない場合は[0]を入力\n");
 	scanf("%d", &i);
 
 	printf("\n");
+	*/
 
+
+	drawcard(card, onehand, chengehand);
+	/*
 	while(1){												//手札の交換(1P)
 		
 
@@ -357,11 +488,14 @@ void game(){
 			else i = i / 10;
 		}
 	}
-
+	//ここでうまいこと交換できない原因は、card[rnd] = 1;がないからなのかなぁ...?
+	*/
 	printf("\n");
 
 	printf("2Pのターンです。\n");
 
+	printcard(twohand);
+	/*
 	for(i=0;i<5;i++){										//手札の表示(2P)
 		printf("%d ", i+1); 
 		j = twohand[i] / 13;
@@ -380,15 +514,20 @@ void game(){
 		printf("%d\n", twohand[i] % 13 + 1);
 		//}
 	}
-	printf("\n");
+	*/
 
+	chengehand = choice();
+	/*
 	printf("交換するカードの番号を入力してください\n");
 	printf("例:1枚目と3枚目を交換する場合[13]\n");
 	printf("交換しない場合は[0]を入力\n");
 	scanf("%d", &i);
 
 	printf("\n");
+	*/
 
+	drawcard(card, twohand, chengehand);
+	/*
 	while(1){													//手札の交換(2P)
 		if(i == 0) break;
 		j = i % 10;
@@ -401,11 +540,16 @@ void game(){
 			else i = i / 10;
 		}
 	}
+	*/
 
-	match(onehand, twohand);
+	puts("1P");
+	printcard(onehand);
+	puts("2P");
+	printcard(twohand);
 
+	match(onehand, twohand); //これはがくさんが作った関数。なんか怪しいことしてる可能性アリ。
 
-/*
+	/*
   for(k = 0; k < 2; k++){
   if(k == 0){
   for(i = 0; i < 5; i++){
@@ -416,7 +560,6 @@ void game(){
   hand[i] = twohand[i];
   }
   }
-
   for(i = 0; i < 5; i++){										//手札のソート
   for(j = 0; j < 5; j++){
   if(hand[i] < hand[j]){
@@ -426,12 +569,9 @@ void game(){
   }
   }
   }
-
   for(i = 0; i < 5; i++){										//カードの数字を代入
   handle[i] = hand[i] % 13;
   }
-
-
   for(i = 0; i < 5; i++){										//カードの数字ソート
   for(j = 0; j < 5; j++){
   if(handle[i] < handle[j]){
@@ -441,17 +581,14 @@ void game(){
   }
   }
   }
-
   //for(i = 0; i < 5; i++){
   printf("%d %d\n",i,handle[i]);
   }
   printf("\n");//
-
   //ロイヤルストレートフラッシュか(済)
   if(hand[0] == 0 && hand[1] == 9 && hand[2] == 10 && hand[3] == 11 && hand[4] == 12){
   rank = 9;
   }else
-
   //ストレートフラッシュか(済)
   if(hand[0] / 13 == hand[1] / 13 && hand[1] / 13 == hand[2] / 13 &&
   hand[2] / 13 == hand[3] / 13 && hand[3] / 13 == hand[4] / 13 &&
@@ -459,7 +596,6 @@ void game(){
   hand[3] % 13 == hand[2] % 13 + 1 && hand[4] % 13 == hand[3] % 13 + 1){
   rank = 8;
   }else
-
   //フォーカードか(済)
   if(hand[0] % 13 == hand[1] % 13 && hand[1] % 13 == hand[2] % 13 && hand[2] % 13 == hand[3] % 13 ||
   hand[0] % 13 == hand[1] % 13 && hand[1] % 13 == hand[2] % 13 && hand[2] % 13 == hand[4] % 13 ||
@@ -468,7 +604,6 @@ void game(){
   hand[1] % 13 == hand[2] % 13 && hand[2] % 13 == hand[3] % 13 && hand[3] % 13 == hand[4] % 13 ){
   rank = 7;
   }else
-
   //フルハウスか(済)
   if(handle[0] == handle[1] && handle[1] == handle[2] && handle[3] == handle[4] ||
   handle[0] == handle[1] && handle[1] == handle[3] && handle[2] == handle[4] ||
@@ -482,19 +617,16 @@ void game(){
   handle[2] == handle[3] && handle[3] == handle[4] && handle[0] == handle[1] ){
   rank = 6;
   }else
-
   //フラッシュか(済)
   if(hand[0] / 13 == hand[1] / 13 && hand[1] / 13 == hand[2] / 13 &&
   hand[2] / 13 == hand[3] / 13 && hand[3] / 13 == hand[4] / 13 ){
   rank = 5;
   }else
-
   //ストレートか(済)
   if(handle[1] == handle[0] + 1 && handle[2] == handle[1] + 1 &&
   handle[3] == handle[2] + 1 && handle[4] == handle[3] + 1){
   rank = 4;
   }else
-
   //スリーカードか(済)
   if(hand[0] % 13 == hand[1] % 13 && hand[1] % 13 == hand[2] % 13 ||
   hand[0] % 13 == hand[1] % 13 && hand[1] % 13 == hand[3] % 13 ||
@@ -508,7 +640,6 @@ void game(){
   hand[2] % 13 == hand[3] % 13 && hand[3] % 13 == hand[4] % 13 ){
   rank = 3;
   }else
-
   //ツーペアか
   for(i = 0; i < 5; i++){
   for(j = 0; j < 5; j++){
@@ -521,10 +652,8 @@ void game(){
   }
   }
   rank = pare;
-
   if(k == 0) onerank = rank;
   else if(k == 1) tworank = rank;
-
   for(i=0;i<5;i++){										//手札の表示
   printf("%d ", i+1); 
   j = onehand[i] / 13;
@@ -544,7 +673,6 @@ void game(){
   //}
   }
   printf("\n");
-
   }
   switch(onerank){										//判定結果の表示
   case 9: printf("ロイヤルストレートフラッシュ");
@@ -568,9 +696,7 @@ void game(){
   case 0: printf("ハイカード");
   break;
   }
-
   printf("\n");
-
   for(i=0;i<5;i++){										//手札の表示
   printf("%d ", i+1); 
   j = twohand[i] / 13;
@@ -590,7 +716,6 @@ void game(){
   //}
   }
   printf("\n");
-
   switch(tworank){										//判定結果の表示
   case 9: printf("ロイヤルストレートフラッシュ");
   break;
@@ -613,9 +738,7 @@ void game(){
   case 0: printf("ハイカード");
   break;
   }
-
   printf("\n");
-
   if(onerank > tworank){
   printf("1Pの勝ち!");
   }else if(onerank < tworank){
