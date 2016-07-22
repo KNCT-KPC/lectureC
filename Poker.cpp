@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-void pair(int hand[], int pairary[]);
+int pair(int hand[], int pairary[]);
 int compare_int(const void *a, const void *b);
 int straight(int hand[]);
 int flush(int hand[]);
-int aryres(int pairary[], int strit, int flush);
+int aryres(int pairary[], int pair, int strit, int flush);
+int win(int oneres, int onepair, int onestrit, int oneflush, int twores, int twopair, int twostrit, int twoflush);
 void match(int onehand[], int twohand[]);
 void drawcard(int card[], int hand[], int swaphand);
 void printcard(int hand[]);
@@ -14,12 +15,22 @@ int choice();
 void game();
 int main(void);
 
+
+/* qsort() 関数のソート方法を定義 */
+int compare_int(const void *a, const void *b)
+{
+	return *(int*)a - *(int*)b;
+}
+
 /* hoge ペア かどうか調べます ( int hand[] -> 手札, int pairary[] -> 結果格納配列 ) */
-void pair(int hand[], int pairary[]) {
+int pair(int hand[], int pairary[]) {
 /* pairary[0] = ワンペアの個数(2つならツーペア)
  * pairary[1] = スリーカードの個数
  * pairary[2] = フォーカードの個数
  * pairary[3] = ファイブカードの個数(ジョーカーの扱いを定義する必要あり)
+ *
+ * 戻り値 :
+ * 1-13 -> 最大の役同士の強さ
  */
 
 	int i, j;
@@ -28,25 +39,38 @@ void pair(int hand[], int pairary[]) {
 	int checkr; // チェックする手札の値2
 	int paircnt; // (2, 3, 4, 5)カード記録用
 	int checked[5] = {}; // チェック済み手札を記録します
+	int max = 0; // 最大hogeカードを記録
+	int win[5] = {}; // 役の強さ記録
 	for(i = 0; i < count; i++) {
 		paircnt = 0; // 初期化
 		checkl = hand[i] % 13 + 1; // カードの数字を算出
-		for(j = i; j < count; j++) { // まだ見ていない組み合わせについて
+		for(j = i+1; j < count; j++) { // まだ見ていない組み合わせについて
 			checkr = hand[j] % 13 + 1; // カードの(ry
 			if(checkl == checkr && checked[j] == 0) { // カードの数字が同じ かつ まだ見ていない（結果に反映させていない）場合
 				paircnt++; // (hoge)カードにする
+				checked[i]++; // 結果反映済みにする
 				checked[j]++; // 結果反映済みにする
 			}
 		}
-		if(paircnt >= 2) pairary[paircnt-2]++; // ワンペア以上なら反映
+		if(paircnt >= 1) pairary[paircnt-1]++; // ワンペア以上なら反映
+		if(max < paircnt) max = paircnt; // 最大hogeカード算出
 	}
-	return;
-}
+	//printf("max = %d\n", max);
 
-/* qsort() 関数のソート方法を定義 */
-int compare_int(const void *a, const void *b)
-{
-	return *(int*)a - *(int*)b;
+/* 同じ役のカードの強さ算出 */
+	for(i = 0; i < count; i++) {
+		if(max >= 2 && checked[i] == 1) {// スリーカード以上の場合、同じ役の強さを算出
+			if(hand[i] % 13 + 1 == 1) win[i] = 14; // A は特別扱い
+			else win[i] = hand[i] % 13 + 1;
+		}
+		else if(max < 2 && checked[i] == 0) { // ツーペア以下の場合、同じ役の強さを算出
+			if(hand[i] % 13 + 1 == 1) win[i] = 14; // A は特別扱い
+			else win[i] = hand[i] % 13 + 1;
+		}
+	}
+	qsort(win, 5, sizeof(int), compare_int); // ソート(整列)
+
+	return win[4];
 }
 
 /* ストレート かどうか調べます ( int hand[] -> 手札 ) */
@@ -67,8 +91,8 @@ int straight(int hand[]) {
 
 	qsort(stritary, 5, sizeof(int), compare_int); // ソート(整列)
 
-	if(stritary[0] == 1 && stritary[1] == 10 && stritary[2] == 11 && stritary[3] == 12 && stritary[4] == 13) { // 最大値が A の場合の特殊ケース
-		return 14;
+	if(stritary[0] == 1 && stritary[1] == 10 && stritary[2] == 11 && stritary[3] == 12 && stritary[4] == 13) { // ロイヤルストレートなんとか
+		return 15;
 	}
 
 	num = stritary[0]; // 数値比較用
@@ -78,20 +102,18 @@ int straight(int hand[]) {
 		}
 		num = stritary[i]; // 値を更新
 	}
+	if(stritary[0] == 1) return 14;// 最大値が A の場合の特殊ケース
 	return num;
 }
 
 /* フラッシュ かどうか調べます ( int hand[] -> 手札 ) */
 int flush(int hand[]) {
 /* 戻り値 :
- * 0 -> フラッシュでない
- * 1 -> スペードのフラッシュ
- * 2 -> ハートのフラッシュ
- * 3 -> ダイヤのフラッシュ
- * 4 -> クローバーのフラッシュ
+ * 1-13 -> 最大の役同士の強さ
  */
 
 	int flushary[5] = {}; // カードの柄情報のみを格納
+	int win[5] = {}; // 役の強さ記録
 	int num; // 戻り値格納用
 	int i;
 	for(i = 0; i < 5; i++) {
@@ -104,29 +126,27 @@ int flush(int hand[]) {
 			return 0;
 		}
 	}
-// スペードのフラッシュが一番強く、ついでハート、ダイヤ、クラブの順。
-	switch(num) {
-	case 1:
-		return 4;
-	case 2:
-		return 1;
-	case 3:
-		return 3;
-	case 4:
-		return 2;
-	default:
-		return 0;
+
+/* 同じ役のカードの強さ算出 */
+	for(i = 0; i < 5; i++) {
+		if(hand[i] % 13 + 1 == 1) win[i] = 14; // A は特別扱い
+		else win[i] = hand[i] % 13 + 1;
 	}
+
+	qsort(win, 5, sizeof(int), compare_int); // ソート(整列)
+
+	return win[4];
+
 }
 
 /* 役を決定します ( int pairhand[] -> ペア配列, int strit -> ストレート判定, int flush -> フラッシュ判定 ) */
-int aryres(int pairary[], int strit, int flush) {
+int aryres(int pairary[], int pair, int strit, int flush) {
 	if(pairary[3] != 0) {
 		printf("5カード\n");
 		return 10;
 	}
 	if(strit != 0 && flush != 0) {
-		if(strit == 14) {
+		if(strit == 15) {
 			printf("ロイヤルストレートフラッシュ\n");
 			return 9;
 		}
@@ -142,7 +162,7 @@ int aryres(int pairary[], int strit, int flush) {
 		return 6;
 	}
 	if(flush != 0) {
-		printf("フルハウス\n");
+		printf("フラッシュ\n");
 		return 5;
 	}
 	if(strit != 0) {
@@ -165,13 +185,39 @@ int aryres(int pairary[], int strit, int flush) {
 	return 0;
 }
 
+int win(int oneres, int onepair, int onestrit, int oneflush, int twores, int twopair, int twostrit, int twoflush) {
+	if(oneres == 5) { // フラッシュ同士の場合
+		//printf("%d, %d\n", oneflush, twoflush);
+		if(oneflush > twoflush) return 1;
+		else if(oneflush < twoflush) return 2;
+		else return 0;
+	}
+	if(oneres == 4 || oneres == 8) { // ストレート、ストレートフラッシュ同士の場合
+		//printf("%d, %d\n", onestrit, twostrit);
+		if(onestrit > twostrit) return 1;
+		else if(onestrit < twostrit) return 2;
+		else return 0;
+	}
+	if(oneres <= 3 || oneres == 6 || oneres == 7 || oneres == 10) {
+// ハイカード、ワンペア、ツーペア、スリーカード、フルハウス、フォーカード、ファイブカード同士の場合
+		//printf("%d, %d\n", onepair, twopair);
+		if(onepair > twopair) return 1;
+		else if(onepair < twopair) return 2;
+		else return 0;
+	}
+	//まだ不完全
+	return 0;
+}
+
 /* 勝敗を決定します ( int onehand[] -> 1P手札, int twohand[] -> 2P手札 ) */
 void match(int onehand[], int twohand[]) {
 	int onepairary[4] = {};
 	int twopairary[4] = {};
+	int onepair, twopair;
 	int onestrit, twostrit;
 	int oneflush, twoflush;
 	int oneres, twores;
+	int winres;
 	int i, j;
 
 // 1P手札表示
@@ -182,9 +228,21 @@ void match(int onehand[], int twohand[]) {
 	//printf("2P手札\n");
 	//printcard(twohand);
 
+// ソートされてる前提の処理が混じっているのでソートする
+	//qsort(onehand, 5, sizeof(int), compare_int); // ソート(整列)
+	//qsort(twohand, 5, sizeof(int), compare_int); // ソート(整列)
+
+// 1P手札表示
+	printf("1P手札\n");
+	printcard(onehand);
+
+// 2P手札表示 冗ちょ(ry
+	printf("2P手札\n");
+	printcard(twohand);
+
 // ペア配列を求める
-	pair(onehand, onepairary);
-	pair(twohand, twopairary);
+	onepair = pair(onehand, onepairary);
+	twopair = pair(twohand, twopairary);
 
 // ストレート判定を行う
 	onestrit = straight(onehand);
@@ -196,9 +254,9 @@ void match(int onehand[], int twohand[]) {
 
 // 役を求める
 	printf("1Pは...\n");
-	oneres = aryres(onepairary, onestrit, oneflush);
+	oneres = aryres(onepairary, onepair, onestrit, oneflush);
 	printf("2Pは...\n");
-	twores = aryres(twopairary, twostrit, twoflush);
+	twores = aryres(twopairary, twopair, twostrit, twoflush);
 
 
 
@@ -210,8 +268,17 @@ void match(int onehand[], int twohand[]) {
 		printf("2Pの勝ち\n");
 	}
 	else {
-		/* コーディングの手間を惜しんだ結果 */
-		printf("引き分け\n");
+		winres = win(oneres, onepair, onestrit, oneflush, twores, twopair, twostrit, twoflush);
+		if(winres == 1) {
+			printf("1Pの勝ち\n");
+		}
+		else if(winres == 2) {
+			printf("2Pの勝ち\n");
+		}
+		else {
+			/* コーディングの手間を惜しんだ結果 */
+			printf("引き分け\n");
+		}
 	}
 	return;
 /*
@@ -302,7 +369,16 @@ int choice(){
 		printf("同じ個所は一度までしか交換できません\n");
 		printf("例:1枚目と3枚目を交換する場合[13]\n");
 		printf("交換しない場合は[0]を入力\n*[0]交じりの数字はだめです*\n");
-		scanf("%d", &i);	//入力が数値か否かを判定する？もっと言うと１～５か判定する？べきだよね？
+
+/* とりあえず文字入力時の無限ループ回避 */
+	if(scanf("%d", &i) != 1) {
+	    scanf("%*s");
+	    if(feof(stdin)) printf("Buffer Error!\n");
+	    printf("\n不正な値です．再入力してください．\n\n");
+	    continue;
+	}
+
+	//scanf("%d", &i);	//入力が数値か否かを判定する？もっと言うと１～５か判定する？べきだよね？
 		puts("");
 
 		I = i;
@@ -729,7 +805,7 @@ int main(void){
 
 	game();
 
-
+	printf("0を押してください\n");
 	scanf("%d",&pause);
 	return 0;
 }
