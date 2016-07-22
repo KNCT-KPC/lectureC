@@ -2,6 +2,17 @@
 #include <stdlib.h>
 #include <time.h>
 
+void pair(int hand[], int pairary[]);
+int compare_int(const void *a, const void *b);
+int straight(int hand[]);
+int flush(int hand[]);
+int aryres(int pairary[], int strit, int flush);
+void match(int onehand[], int twohand[]);
+void drawcard(int card[], int hand[], int swaphand);
+void printcard(int hand[]);
+int choice();
+void game();
+int main(void);
 
 /* hoge ペア かどうか調べます ( int hand[] -> 手札, int pairary[] -> 結果格納配列 ) */
 void pair(int hand[], int pairary[]) {
@@ -163,49 +174,13 @@ void match(int onehand[], int twohand[]) {
 	int oneres, twores;
 	int i, j;
 
-// 1P手札表示 冗ちょ(ry
-	printf("1P手札\n");
-	for(i=0;i<5;i++){ //手札の表示
-		printf("%d ", i+1); 
-		j = onehand[i] / 13;
-		switch(j){
-		case 0:printf("スペードの");
-			break;
-		case 1:printf("クローバーの");
-			break;
-		case 2:printf("ハートの");
-			break;
-		case 3:printf("ダイヤの");
-			break;
-			//case 4:printf("Joker\n");
-		}
-		//if(hand[i] != 52){
-		printf("%d\n", twohand[i] % 13 + 1);
-		//}
-	}
-	printf("\n");
+// 1P手札表示
+	//printf("1P手札\n");
+	//printcard(onehand);
 
-	printf("2P手札\n");
 // 2P手札表示 冗ちょ(ry
-	for(i=0;i<5;i++){ //手札の表示
-		printf("%d ", i+1); 
-		j = twohand[i] / 13;
-		switch(j){
-		case 0:printf("スペードの");
-			break;
-		case 1:printf("クローバーの");
-			break;
-		case 2:printf("ハートの");
-			break;
-		case 3:printf("ダイヤの");
-			break;
-			//case 4:printf("Joker\n");
-		}
-		//if(hand[i] != 52){
-		printf("%d\n", twohand[i] % 13 + 1);
-		//}
-	}
-	printf("\n");
+	//printf("2P手札\n");
+	//printcard(twohand);
 
 // ペア配列を求める
 	pair(onehand, onepairary);
@@ -547,7 +522,7 @@ void game(){
 	puts("2P");
 	printcard(twohand);
 
-	match(onehand, twohand); //これはがくさんが作った関数。なんか怪しいことしてる可能性アリ。
+	match(onehand, twohand); //これはがくさんが作った関数。とりあえず動く。
 
 	/*
   for(k = 0; k < 2; k++){
