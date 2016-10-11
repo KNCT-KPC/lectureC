@@ -1,6 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+/*
+  なんかメモ
+  あああああああああああ
+*/
+
+
 main(){
   int x, y, z, i, n;
   x = 0;
@@ -15,7 +21,7 @@ main(){
     } else if(a == 'n'){
       printf("それでは、私が先攻でゲームします。\n");
       turn = 1;
-    } 
+    }
     printf("最初の数字はいくつにしますか？\n");
     scanf("%d", &x);
     if(x < 0){
