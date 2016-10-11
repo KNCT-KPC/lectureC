@@ -1,11 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-/*
-  なんかメモ
-  あああああああああああ
-*/
-
 
 main(){
   int x, y, z, i, n;
