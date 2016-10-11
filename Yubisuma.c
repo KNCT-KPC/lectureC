@@ -8,6 +8,8 @@
 #include<time.h>
 //ファイルを導入します。
 
+
+//masterなら直に書き換えられます。
 int main(void){
 	int x;  //終了前の入力状態のための無意味な変数
 	int turn = 0;
