@@ -6,23 +6,23 @@ NITKCKPCの外部の方はリンク先にアクセスできません。
 
 ---
 9. 以下の問いに答えよ (リンク先参照)
-  1. [講習会スレ:60](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=26636399&focusOn=follow)
-  1. [講習会スレ:61](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=27571902&focusOn=follow)
+  - [講習会スレ:60](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=26636399&focusOn=follow)
+  - [講習会スレ:61](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=27571902&focusOn=follow)
     - [例(講習会スレ:62)](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=28443660&focusOn=follow)
 
 8. 以下の問いに答えよ (自作関数以外を用いてはならない)
-  1. 任意の値の平方根を求めるプログラムを作成せよ
-  1. 2つの値の最小公倍数と最大公約数を求めるプログラムを作成せよ
-  1. 3つ以上の値の最小公倍数と最大公約数を求めるプログラムを作成せよ
-  1. 任意の値nに対して、n番目の素数を出力するプログラムを作成せよ
+  - 任意の値の平方根を求めるプログラムを作成せよ
+  - 2つの値の最小公倍数と最大公約数を求めるプログラムを作成せよ
+  - 3つ以上の値の最小公倍数と最大公約数を求めるプログラムを作成せよ
+  - 任意の値nに対して、n番目の素数を出力するプログラムを作成せよ
     - [講習会スレ:39](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=23230567&focusOn=follow)
     - [講習会スレ:40](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=23232013&focusOn=follow)
 
 7. 16進数の四則演算をし、計算結果も16進数表記せよ
-  1. af01 + cb22
-  1. cad.fc - 2af.c
-  1. af05b.bad * f21a4.bd
-  1. f56a41.def101 / abcdef.fedcba
+  - af01 + cb22
+  - cad.fc - 2af.c
+  - af05b.bad * f21a4.bd
+  - f56a41.def101 / abcdef.fedcba
     - 10進数以外の計算を行えるようになろうという問題です
     - [講習会スレ:30](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=20989300&focusOn=follow)
 
@@ -39,16 +39,16 @@ NITKCKPCの外部の方はリンク先にアクセスできません。
   - [講習会スレ:24](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=20240917&focusOn=follow)
 
 4. int x[10] = [1, 1, 4, 5, 1, 4, 8, 1, 0, 8] の配列がある
-  1. 「1」が入っている配列をすべて答えよ
-  1. x[3]の値は何？
+  - 「1」が入っている配列をすべて答えよ
+  - x[3]の値は何？
     - 配列の基礎的な問題です
     - 配列が分かるようになると、たくさんのデータを扱うことが多少なりとも楽になります
     - [講習会スレ:18](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=19447084&focusOn=follow)
     
 3. 一つのサイコロをn回振って、1の目が最低でも一回出る確率を求めるプログラムを作成し、以下の問いに答えよ
-  1. サイコロを15回ふった場合の確率を求めよ
-  1. サイコロを36回ふった場合の確率を求めよ
-  1. サイコロを60回ふった場合の確率を求めよ
+  - サイコロを15回ふった場合の確率を求めよ
+  - サイコロを36回ふった場合の確率を求めよ
+  - サイコロを60回ふった場合の確率を求めよ
     - 確率の問題です
     - [講習会スレ:12](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=17023618&focusOn=follow)
 
