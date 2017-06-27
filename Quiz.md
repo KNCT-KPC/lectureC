@@ -27,16 +27,16 @@ NITKCKPCの外部の方はリンク先にアクセスできません。
     - [講習会スレ:30](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=20989300&focusOn=follow)
 
 6. 35人のクラスの席替えプログラムを作成せよ
-  - 配列を本格的に利用した問題
-  - 座席の配置が7行5列になるようにしてみよう
-  - 余裕な人は、自分のクラスの座席の配列とクラスメイトの人数でできるようにして担任にプログラムを提供しよう
-  - [講習会スレ:26](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=20285426&focusOn=follow)
+    - 配列を本格的に利用した問題
+    - 座席の配置が7行5列になるようにしてみよう
+    - 余裕な人は、自分のクラスの座席の配列とクラスメイトの人数でできるようにして担任にプログラムを提供しよう
+    - [講習会スレ:26](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=20285426&focusOn=follow)
 
 5. 「x,y,z」の3つの整数を受け取ったら、「x年y月z日」の曜日と、今日の日付を「皇紀（日本歴）」で教えてくれるプログラムを作成せよ
-  - カレンダーを作ってみよう
-  - 閏年の処理も考えてみよう
-  - なお、CUIにてカレンダーを出力するコマンドというのもあります
-  - [講習会スレ:24](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=20240917&focusOn=follow)
+    - カレンダーを作ってみよう
+    - 閏年の処理も考えてみよう
+    - なお、CUIにてカレンダーを出力するコマンドというのもあります
+    - [講習会スレ:24](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=20240917&focusOn=follow)
 
 4. int x[10] = [1, 1, 4, 5, 1, 4, 8, 1, 0, 8] の配列がある
   - 「1」が入っている配列をすべて答えよ
@@ -46,22 +46,22 @@ NITKCKPCの外部の方はリンク先にアクセスできません。
     - [講習会スレ:18](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=19447084&focusOn=follow)
     
 3. 一つのサイコロをn回振って、1の目が最低でも一回出る確率を求めるプログラムを作成し、以下の問いに答えよ
-  - サイコロを15回ふった場合の確率を求めよ
+  - サイコロを15回ふった場合の確率を求めよ
   - サイコロを36回ふった場合の確率を求めよ
   - サイコロを60回ふった場合の確率を求めよ
     - 確率の問題です
     - [講習会スレ:12](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=17023618&focusOn=follow)
 
 2. 必要・蒸発水分量を計算するプログラムを作成せよ
-  - 人間が１日に必要な水分[ml]や、１日に蒸発する水分[ml]に関する計算です
-  - 必要水分量＝体重×33
-  - 水分蒸発量＝体重×15＋200×(体温－36.8)
-  - 計算式の都合上、体温が35～37.5℃の範囲に収まっていないと正確に計算できませんので、範囲外の値を入力された時のエラー処理をしましょう
-  - [講習会スレ:2](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=16832604&focusOn=follow)
-  - [例(講習会スレ:13)](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=17112492&focusOn=follow)
+    - 人間が１日に必要な水分[ml]や、１日に蒸発する水分[ml]に関する計算です
+    - 必要水分量＝体重×33
+    - 水分蒸発量＝体重×15＋200×(体温－36.8)
+    - 計算式の都合上、体温が35～37.5℃の範囲に収まっていないと正確に計算できませんので、範囲外の値を入力された時のエラー処理をしましょう
+    - [講習会スレ:2](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=16832604&focusOn=follow)
+    - [例(講習会スレ:13)](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=17112492&focusOn=follow)
 
 1. BMI指数を求め、肥満か否かを判定せよ
-  - 身長[cm]と体重[kg]の値を入力してもらいましょう
-  - BMI指数 = 体重 ÷ ((身長)×(身長))
-  - [講習会スレ:1](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=16167542&focusOn=follow)
-  - [例](https://github.com/KNCT-KPC/lectureC/blob/master/bmimethod.c)
+    - 身長[cm]と体重[kg]の値を入力してもらいましょう
+    - BMI指数 = 体重 ÷ ((身長)×(身長))
+    - [講習会スレ:1](https://cybozulive.com/2_122111/gwBoard/view?bid=2%3A2925785&fid=16167542&focusOn=follow)
+    - [例](https://github.com/KNCT-KPC/lectureC/blob/master/bmimethod.c)
