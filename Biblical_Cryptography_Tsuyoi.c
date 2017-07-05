@@ -1,3 +1,9 @@
+/*
+ * 参考
+ * 配列を自由自在に作る, "http://9cguide.appspot.com/19-01.html".
+ * 5.文字列の操作, "http://www.wakhok.ac.jp/~kanayama/C/02/node148.html".
+ */
+
 #include<stdio.h>
 
 #include<stdlib.h>	// malloc()
