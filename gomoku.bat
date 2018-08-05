@@ -1,0 +1,2 @@
+gomoku.exe
+pause
