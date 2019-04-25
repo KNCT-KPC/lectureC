@@ -8,7 +8,7 @@ void main(){
   int a = 5;
   int b = 10;
   
-  int *p;   //これがポインタ関数。
+  int *p;   //これがポインタ変数。
   
   printf("aの値は%d\n", a);   //int型の変数aが保持している整数値を出力します。
   
