@@ -1,0 +1,715 @@
+list2
+#include<stdio.h>
+main()
+{
+     int i1,i2;
+     float f1,f2;
+     double d1,d2;
+     char c1,c2;
+     
+     i1=10;
+     i2=0x10;
+     f1=10.0;
+     f2=5e-2;
+     d1=d2=20.0;
+     c1='a';
+     c2='B';
+     
+     printf("i1=%d i2=%d\n",i1,i2);
+     printf("f1=%f f2=%f\n",f1,f2);
+     printf("d1=%f d2=%f\n",d1,d2);
+     printf("c1=%c c2=%c\n",c1,c2);
+     
+     return 0;
+     }
+
+ÀsŒ‹‰Ê
+i1=10 i2=16
+f1=10.000000 f2=0.050000
+d1=20.000000 d2=20.000000
+c1=a c2=B
+
+
+list2ƒvƒƒOƒ‰ƒ€i\n‚ğ\n‚É‚µ‚½ê‡j
+#include<stdio.h>
+main()
+{
+ int i1,i2;
+ float f1,f2;
+ double d1,d2;
+ char c1,c2;
+ 
+ i1=10;
+ i2=0x10;
+ f1=10.0;
+ f2=5e-2;
+ d1=d2=20.0;
+ c1='a';
+ c2='B';
+ 
+ printf("i1=%d i2=%d\r",i1,i2);
+ printf("f1=%f f2=%f\r",f1,f2);
+ printf("d1=%f d2=%f\r",d1,d2);
+ printf("c1=%c c2=%c\r",c1,c2);
+ 
+ return 0;
+ }
+
+ÀsŒ‹‰Ê
+c1=a c2=B000 d2=20.000000
+
+
+\n‚ÌˆÓ–¡‚ÍƒJ[ƒ\ƒ‹‚ğ¶’[‚ÉˆÚ“®‚·‚éB
+i1,i2‚ª•\¦‚³‚ê¶’[‚©‚ç‚†‚PA‚†‚Q‚Éã‘‚«‚³‚ê‚éB
+ÅŒã‚Ì‚„‚PA‚„‚Q‚ªÀsŒã‚ƒ‚PA‚ƒ‚Q‚Éã‘‚«‚³‚ê‚é‚ª•¶š”‚ª‚„‚P‚Ì•”•ª‚Éû‚Ü‚é‚Ì‚Å
+‚ƒ‚PA‚ƒ‚QA‚„‚Q‚ª•\¦‚³‚ê‚éB
+
+
+
+list3
+#include<stdio.h>
+main()
+{
+int a[10],i;
+
+for(i=0;i<10;i++) a[i]=i;
+for(i=0;i<10;i++) printf("a[%d]=%d\n",i,a[i]);
+
+return 0;
+
+}
+
+ÀsŒ‹‰Ê
+a[0]=0
+a[1]=1
+a[2]=2
+a[3]=3
+a[4]=4
+a[5]=5
+a[6]=6
+a[7]=7
+a[8]=8
+a[9]=9
+
+list4
+
+#include<stdio.h>
+main()
+{
+char str1[11],str2[]="ABCDEFGHIJ";
+int i;
+
+for(i=0;i<10;i++) str1[i]='a'+i;
+str1[10]='\0';
+
+printf("str1=%s\n",str1);
+for(i=0;i<10;i++) printf("str2[%d]=%c\n",i,str2[i]);
+printf("str2=%s\n",str2);
+
+return 0;
+}
+
+ÀsŒ‹‰Ê
+str1=abcdefghij
+str2[0]=A
+str2[1]=B
+str2[2]=C
+str2[3]=D
+str2[4]=E
+str2[5]=F
+str2[6]=G
+str2[7]=H
+str2[8]=I
+str2[9]=J
+str2=ABCDEFGHIJ
+
+
+‚Ws–Ú‚ğíœ
+#include<stdio.h>
+main()
+{
+char str1[11],str2[]="ABCDEFGHIJ";
+int i;
+
+for(i=0;i<10;i++) str1[i]='a'+i;
+
+
+printf("str1=%s\n",str1);
+for(i=0;i<10;i++) printf("str2[%d]=%c\n",i,str2[i]);
+printf("str2=%s\n",str2);
+
+return 0;
+}
+
+ÀsŒ‹‰Ê
+str1=abcdefghijı
+
+str2[0]=A
+str2[1]=B
+str2[2]=C
+str2[3]=D
+str2[4]=E
+str2[5]=F
+str2[6]=G
+str2[7]=H
+str2[8]=I
+str2[9]=J
+str2=ABCDEFGHIJ
+
+
+
+list5
+
+#include<stdio.h>
+main()
+{
+  int a,b;
+  float c;
+  
+  a=10; b=3;
+  
+  printf("a+b=%d a-b=%d a*b=%d a/b=%d amari=%d\n",a+b,a-b,a*b,a/b,a%b);
+  
+  printf("a/b=%f\n",c=a/b);
+  printf("a/b=%f\n",(float)a/b);
+  printf("a/b=%f\n",a/b);
+  
+  return 0;
+  }
+
+ÀsŒ‹‰Ê
+a+b=13 a-b=7 a*b=30 a/b=3 amari=1
+a/b=3.000000
+a/b=3.333333
+a/b=0.000000
+
+‚Qs–Ú‚Ìa/‚‚‚ÍfloatŒ^‚Ì‚ƒ‚É‘ã“ü‚·‚é‚½‚ß•\¦‚³‚ê‚é
+‚Rs–Ú‚ÍƒLƒƒƒXƒg‚ÅfloatŒ^‚É•ÏX‚·‚é‚½‚ß•\¦‚³‚ê‚é
+‚Ss–Ú‚ÍintŒ^‚Ì‚½‚ßprintfŠÖ”‚Å%f‚Æw¦‚µ‚Ä‚¢‚é‚½‚ßintŒ^‚Í•\¦‚³‚ê‚È‚¢
+
+
+list6
+
+#include<stdio.h>
+main()
+{
+    int a,b;
+    
+    a=b=10;
+    printf("a+=2 %d\n",a+=2);
+    printf("b-=2 %d\n",b-=2);
+    printf("b*=2 %d\n",b*=2);
+    printf("b/=2 %d\n",b/=2);
+    
+    a=b=1;
+    printf("++a %d\n",++a);
+    printf("b++ %d\n",b++);
+    printf("a=%d b=%d\n",a,b);
+    
+    a=b=1;
+    printf("--a %d\n",--a);
+    printf("b-- %d\n",b--);
+    printf("a=%d b=%d\n",a,b);
+    
+    return 0;
+    }
+
+ÀsŒ‹‰Ê
+a+=2 12
+b-=2 8
+b*=2 16
+b/=2 8
+++a 2
+b++ 1
+a=2 b=2
+--a 0
+b-- 1
+a=0 b=0
+
+‰‰K6
+#include<math.h>
+main()
+{
+  int r=10;
+ 
+  
+  printf("‰~ü‚Ì’·‚³%f\n",2*r*M_PI);
+  printf("‰~‚Ì–ÊÏ%f\n",r*r*M_PI);
+  return 0;
+  }
+
+ÀsŒ‹‰Ê
+‰~ü‚Ì’·‚³62.831853
+‰~‚Ì–ÊÏ314.159265
+
+list7
+
+#include<stdio.h>
+main()
+{
+   int a,b;
+   
+   a=0x1234;    
+   b=0xabcd;   
+   printf("a&b=%x a|b=%x a^b=%x ~a=%x\n",a&b,a|b,a^b,~a);
+   
+   a=b=8;
+   printf("a>>1=%d b<<1=%d\n",a>>1,b<<1);
+   
+   a=b=8;
+   printf("a>>2=%d b<<2=%d\n",a>>2,b<<2);
+   
+   return 0;
+   }
+
+ÀsŒ‹‰Ê
+a&b=204 a|b=bbfd a^b=b9f9 ~a=ffffedcb
+a>>1=4 b<<1=16
+a>>2=2 b<<2=32
+
+list8
+
+#include<stdio.h>
+main()
+{
+  int s,i;
+  
+  for(s=0,i=1;i<=10;i++)
+      s+=i;
+      printf("s=%d\n",s);
+      
+      return 0;
+      }
+
+ÀsŒ‹‰Ê
+s=55
+
+list9
+
+#include<stdio.h>
+main()
+{
+   int i,j;
+   
+   for(i=1;i<=9;i++){
+   for(j=1;j<=9;j++)
+   printf("%3d",i*j);
+   printf("\n");
+   }
+   return 0;
+   }
+
+ÀsŒ‹‰Ê
+  1  2  3  4  5  6  7  8  9
+  2  4  6  8 10 12 14 16 18
+  3  6  9 12 15 18 21 24 27
+  4  8 12 16 20 24 28 32 36
+  5 10 15 20 25 30 35 40 45
+  6 12 18 24 30 36 42 48 54
+  7 14 21 28 35 42 49 56 63
+  8 16 24 32 40 48 56 64 72
+  9 18 27 36 45 54 63 72 81
+
+
+#include<stdio.h>
+main()
+{
+
+   int a,b,c;
+   for(b=0x20;b<=0x2f;b+=0x01){
+   for(a=b;a<=0x7E;a+=0x10)
+   printf("%0x %2c %4c",a,a,0x20);
+   putchar('\n');
+   }
+   
+   
+   return 0;
+   }
+
+ÀsŒ‹‰Ê
+20        30  0     40  @     50  P     60  `     70  p
+21  !     31  1     41  A     51  Q     61  a     71  q
+22  "     32  2     42  B     52  R     62  b     72  r
+23  #     33  3     43  C     53  S     63  c     73  s
+24  $     34  4     44  D     54  T     64  d     74  t
+25  %     35  5     45  E     55  U     65  e     75  u
+26  &     36  6     46  F     56  V     66  f     76  v
+27  '     37  7     47  G     57  W     67  g     77  w
+28  (     38  8     48  H     58  X     68  h     78  x
+29  )     39  9     49  I     59  Y     69  i     79  y
+2a  *     3a  :     4a  J     5a  Z     6a  j     7a  z
+2b  +     3b  ;     4b  K     5b  [     6b  k     7b  {
+2c  ,     3c  <     4c  L     5c  \     6c  l     7c  |
+2d  -     3d  =     4d  M     5d  ]     6d  m     7d  }
+2e  .     3e  >     4e  N     5e  ^     6e  n     7e  ~
+2f  /     3f  ?     4f  O     5f  _     6f  o
+
+list10
+#include<stdio.h>
+main()
+{
+	int a,i;
+
+	printf("? ");
+	scanf("%d",&a);
+	i=2;
+	while((a%i!=0)&&(i*i<a))
+		i++;
+	if(i*i>a)printf("%dƒn@ƒ\ƒXƒE\n",a);
+	else  printf("%dƒn@ƒ\ƒXƒEƒfƒnƒiƒC\n",a);
+
+	return 0;
+}
+
+list10(100‚Ü‚Å‚Ì‘f”j
+#include<stdio.h>
+main()
+{
+	int i,j,y;
+
+
+	
+	for(i=0;i<=100;i++){
+	    y=0;
+	    for(j=1;j<=i;j++){
+	    if( i%j==0) y++;
+	    }
+	    
+	    if(y==2) printf("%3d",i);
+	    }
+	    printf("\n");
+	    
+	    
+	return 0;
+}
+
+ÀsŒ‹‰Ê
+ 2  3  5  7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97
+
+list11
+#include<stdio.h>
+main()
+{
+	int s=0,a;
+
+	do{
+		printf("? ");
+		scanf("%d",&a);
+		s+=a;
+	}while(a!=0);
+	printf("s=%d\n",s);
+	
+	return 0;
+}
+
+ÀsŒ‹‰Ê
+? 86
+? 57
+? 36
+? 0
+s=179
+
+list12
+#include<stdio.h>
+main()
+{
+	float a,b,c,d;
+
+	printf("a b c =  ");
+	scanf("%f%f%f",&a,&b,&c);
+
+	d=b*b-4*a*c;
+	if(d>=0)
+		printf("ƒWƒbƒXƒEƒJƒC@ƒAƒŠ\n");
+	else
+		printf("ƒWƒbƒXƒEƒJƒC@ƒiƒV\n");
+
+	return 0;
+}
+
+ÀsŒ‹‰Ê
+a b c =  1 4 4
+ƒWƒbƒXƒEƒJƒC@ƒAƒŠ
+
+‰‰K16
+#include<stdio.h>
+main()
+{
+    int a,b,y;
+    
+    printf("‰½”NHF"); scanf("%d",&y);
+    
+    if(y%400==0||(y%4==0&&y%100!=0))
+       printf("‰[”N‚Å‚·B\n");
+       else
+       printf("‰[”N‚Å‚Í‚ ‚è‚Ü‚¹‚ñB\n");  
+      return 0;
+      }
+
+ÀsŒ‹‰Ê
+‰½”NHF1900
+‰[”N‚Å‚Í‚ ‚è‚Ü‚¹‚ñB
+
+list13
+#include<stdio.h>
+main()
+{
+	char class;
+
+	printf("class (M,E,D,J,A) ?");
+	scanf("%c",&class);
+
+	switch(class)
+	{
+	case'M':printf("ƒLƒJƒC\n"); break;
+	case'E':printf("ƒfƒ“ƒL\n"); break;
+	case'D':printf("ƒfƒ“ƒV\n"); break;
+	case'J':printf("ƒWƒ‡ƒEƒzƒE\n"); break;
+	case'A':printf("ƒPƒ“ƒ`ƒN\n"); break:
+	default:printf("ƒhƒŒƒfƒ‚@ƒiƒC\n"); return 1;
+	
+	}
+	return 0;
+}
+ÀsŒ‹‰Ê
+class (M,E,D,J,A) ?D
+ƒfƒ“ƒV
+
+ÀsŒ‹‰Êibreak‚ª–³‚¢ê‡j
+class (M,E,D,J,A) ?M
+ƒLƒJƒC
+ƒfƒ“ƒL
+ƒfƒ“ƒV
+ƒWƒ‡ƒEƒzƒE
+ƒPƒ“ƒ`ƒN
+ƒhƒŒƒfƒ‚@ƒiƒC
+
+
+list14
+#include<stdio.h>
+main()
+{
+	int m;
+
+	printf("month ? ");
+	scanf("%d",&m);
+
+	switch(m)
+	{
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		printf("day=%d\n",31);
+		break;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		printf("day=%d\n",30);
+		break;
+	case 2:
+		printf("day=%d\n",28);
+		break;
+	default:
+		printf("Error!! month=%d\n",m);
+		return 1;
+	}
+	return 0;
+}
+
+ÀsŒ‹‰Ê
+month ? 5
+day=31
+
+
+list15
+#include<stdio.h>
+#include<conio.h>
+
+main()
+{
+	int c;
+
+	while((c = getche()) != '\r')
+		printf(" => 0x%x\n",c);
+
+	return 0;
+
+}
+
+ÀsŒ‹‰Ê
+s => 0x73
+t => 0x74
+4 => 0x34
+3 => 0x33
+2 => 0x32
+@ => 0x40
+a => 0x61
+d => 0x64
+
+
+list16
+#include<stdio.h>
+#include<conio.h>
+
+main()
+{
+	int c;
+
+	while((c = getch()) != '\r')
+		printf("%c",c+1);
+
+	return 0;
+
+}
+
+ÀsŒ‹‰Ê
+bcdefghijklmnopqrstuvwxyz{
+
+list17
+#include<stdio.h>
+
+#define N 5
+
+main()
+{
+	int c, i;
+
+	while((c = getchat()) != ' .'){
+		for(i=0; i<N; i++)
+			printf("%c",c);
+	}
+	printf("\n");
+
+	return0;
+}
+
+ÀsŒ‹‰Ê
+1
+11111
+
+
+
+
+a
+aaaaa
+
+
+
+
+u
+uuuuu
+
+
+
+
+.
+
+
+list18
+#include<stdio.h>
+
+main()
+{
+	int i1, i2;
+	float f1, f2;
+	char c1, c2, str[40];
+
+	printf("i1 i2 = "); scanf("%d%d", &i1, &i2);
+	printf("f1 f2 = "); scanf("%f%f", &f1, &f2);
+	getchar();
+	printf("c1 c2 = "); scanf("%c%c", &c1, &c2);
+	printf("str = "); scanf("%s",str);
+
+	printf("i1=%d i2=%d\n", i1, i2);
+	printf("f1=%f f2=%f\n", f1, f2);
+	printf("c1=%c c2=%c\n", c1, c2);
+	printf("str=%s\n",str);
+
+	return0;
+
+}
+
+ÀsŒ‹‰Ê
+i1 i2 = 7 6
+f1 f2 = 5.6 3.6
+c1 c2 = fd
+str = abcdefg
+i1=7 i2=6
+f1=5.600000 f2=3.600000
+c1=f c2=d
+str=abcdefg
+
+ÀsŒ‹‰Êi‹ó”’“ü—Íj
+i1 i2 = 7 6
+f1 f2 = 5.6 3.6
+c1 c2 = fd
+str = abcd efg
+i1=7 i2=6
+f1=5.600000 f2=3.600000
+c1=f c2=d
+str=abcd
+
+
+
+
+list19
+#include<stdio.h>
+#include<conio.h>
+
+main()
+{
+	int c='*';
+
+	do{
+		if (kbhit()) c = getche();
+		printf("%c", c);
+	}while(c != '\r');
+
+	return 0;
+}
+
+list20
+#include<stdio.h>
+
+main()
+{
+	int a=30;
+	long b=50;
+	float c=123.45;
+	char str[]="ABCDE";
+
+	printf("a=%d\n", a);
+	printf("a=%5d\n", a);
+	printf("a=%x\n", a);
+	printf("b=%ld\n", b);
+	printf("c=%f\n", c);
+	printf("c=%10.4f\n", c);
+	printf("c=%e\n", c);
+	printf("str[3]=%c\n", str[3]);
+	printf("str=%s\n",str);
+
+	return 0;
+}
+
+ÀsŒ‹‰Ê
+a=30
+a=   30
+a=1e
+b=50
+c=123.449997
+c=  123.4500
+c=1.234500e+02
+str[3]=D
+str=ABCDE
+
+
+
+
+
+
+
